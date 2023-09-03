@@ -20,8 +20,8 @@ public class Product {
     @Column(name="details")
     private String details;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="sub_category_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="category_id")
     @JsonBackReference
-    private SubCategory subCategory;
+    private Category category;
 }

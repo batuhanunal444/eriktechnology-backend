@@ -1,5 +1,6 @@
 package com.batuhan.stationer.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,7 +19,16 @@ public class Category {
     private int id;
     @Column(name="name")
     private String name;
+
+    @JsonBackReference
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="parent_category")
+    private Category category;
+
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<SubCategory> subCategories;
+    private List<Category> subCategories;
+
+    @OneToMany(mappedBy="category")
+    private List<Product> products;
 }

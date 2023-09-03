@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class CategoryController {
@@ -47,6 +48,7 @@ public class CategoryController {
     public ResponseEntity<Category> updateCategory (@PathVariable int id, @RequestBody Category category){
         Optional<Category> categoryData = categoryRepository.findById(id);
         if(categoryData.isPresent()) {
+            category.setId(id);
             return new ResponseEntity<>(categoryRepository.save(category),HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
