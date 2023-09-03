@@ -21,7 +21,7 @@ public class Category {
     private String name;
 
     @JsonBackReference
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="parent_category")
     private Category category;
 

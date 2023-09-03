@@ -20,7 +20,7 @@ public class Product {
     @Column(name="details")
     private String details;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="category_id")
     @JsonBackReference
     private Category category;
